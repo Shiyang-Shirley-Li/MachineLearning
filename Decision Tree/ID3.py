@@ -317,13 +317,28 @@ def train(s):
 def average_prediction_error(s, root):
     wrong_count = 0
     for i in range(len(s)):
-        if s[i][(list(s[i].keys())[-1])] == predict_result():
+        row_attributes = []
+        for key in total_attributes:
+            row_attributes.append(s[i][key])
+        if row_attributes[-1] != predict_result(row_attributes, root):
+            wrong_count += 1
+
+    return wrong_count/len(s)
 
 
+def predict_result(attributes, node):
+    boo = node.is_leaf
+    if not node.is_leaf:
+        attr_index = total_attributes.index(node.attribute)
+        child = node.branches[attributes[attr_index]]
+        return predict_result(attributes, child)
+    else:
+        return node.label
 
 
 if __name__ == '__main__':
     tree = train(train_data)
+    err = average_prediction_error(train_data, tree)
     i = 0
 
 # purity type, max tree depth, data
