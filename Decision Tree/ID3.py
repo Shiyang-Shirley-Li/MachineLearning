@@ -9,8 +9,9 @@ import math
 
 # Variables
 train_data = Read.read_data("Test/train.csv")
-#max_depth = input("Enter your maximum tree depth: ")
-
+max_depth = input("Enter your maximum tree depth: ")
+total_attributes = Read.key_list[0:len(Read.key_list)-1]
+total_label_num = len(train_data)
 
 # Information Gain
 
@@ -177,6 +178,26 @@ def most_common_label(s):
     return (most_common, largest_frac)
 
 
+total_most_common_label = most_common_label(train_data) #??????
+
+
+# Return a dictionary having attribute as its key and the value of attribute
+# as value.
+def attribute_value_dictionary(s, attributes):
+    attribute_val = {}
+    total_label_num = len(s)
+    for j in range(len(attributes)):
+        key = attributes[j]
+        attribute_val[key] = set()
+        for i in range(total_label_num):
+            attribute_val[key].add(s[i][(list(s[i].keys())[j])])
+    return attribute_val
+
+
+attribute_val_dict = attribute_value_dictionary(train_data, total_attributes)
+
+
+
 # Data Structures
 class Node:
     # Contains an attribute, different branches, subset, parent, label (if it is a
@@ -208,29 +229,77 @@ class Tree:
     def set_root(self, node):
         self.root = node
 
+
 # ID3 Algorithm
-def ID3(s, attributes, label, level, parent):
+def ID3(s, attributes, level, parent):
     # if all examples have the same label, return a leaf node with the label
+    total_label_num = len(s)
+    label_name = []
+    for i in range(total_label_num):
+        label_name.append(s[i][(list(s[i].keys())[-1])])
+    labels = set(label_name)
+    if len(labels) == 1:
+        node = Node(s, parent, True)
+        node.set_label(list(labels)[0])
+        return node
 
     # if attributes empty or reach the maximum tree depth,
     # return a leaf node with the most common label
     if len(attributes) == 0 or level == max_depth:
         node = Node(s, parent, True)
-        node.set_label(most_common_label)
+        node.set_label(total_most_common_label)#??????
         return node
 
     else:
         # Create a root node for the tree
         node = Node(s, parent, False)
-        #best_attribute = get_best_attribute()
-        #node.set_attribute(best_attribute)
+        best_attribute = get_best_attribute(s, attributes)
+        node.set_attribute(best_attribute)
 
-        #for value in node.attribute:
+        for value in attribute_val_dict[node.attribute]:
+            subset_v = get_s_v(node, node.attribute, value)
 
+            if len(subset_v) == 0:
+                label = most_common_label(s)
+                child_node = Node({}, node, True)
+                child_node.set_label(label)
+                node.add_branch(value, child_node)
+            else:
+                attr = attributes.copy() #remain original attributes
+                attr.remove(node.attribute)
+                child_node = ID3(subset_v, attr, level + 1, node)
+                node.add_branch(value, child_node)
+        return node
+
+
+# Return the best attribute that best splits s by using purity
+def get_best_attribute(s, attributes, purity_type="entropy"):
+    gains = []
+    for attribute in attributes:
+        if purity_type == "entropy":
+            gains.append(info_gain(s, attribute))
+        elif purity_type == "ME":
+            gains.append(majority_error_gain(s, attribute))
+        elif purity_type == "GI":
+            gains.append(gini_index_gain(s, attribute))
+    max_index = gains.index(max(gains))
+    return attributes[max_index]
+
+
+# Return the subset for an attribute value
+def get_s_v(node, attribute, value):
+    attr_index = total_attributes.index(attribute)
+    subset_v = []
+    for i in range(total_label_num):
+        if node.subset[i][(list(node.subset[i].keys())[attr_index])] == value:
+            row = {}
+            row[value] = node.subset[i][(list(node.subset[i].keys())[-1])]
+            subset_v.append(row)
+    return subset_v
 
 
 if __name__ == '__main__':
-    print(gini_index_gain(train_data, "T"))
+    print(ID3(train_data, total_attributes, 1, None)) #ID3(s, attributes, level, parent)
 
 
 
