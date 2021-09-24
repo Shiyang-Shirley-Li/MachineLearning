@@ -10,8 +10,9 @@ import math
 # Variables
 train_data = Read.read_data("Test/train.csv")
 max_depth = input("Enter your maximum tree depth: ")
-total_attributes = Read.key_list[0:len(Read.key_list)-1]
+total_attributes = Read.key_list[0:len(Read.key_list)]
 total_label_num = len(train_data)
+attribute_val_dict = Read.attribute_val
 
 # Information Gain
 
@@ -183,18 +184,18 @@ total_most_common_label = most_common_label(train_data) #??????
 
 # Return a dictionary having attribute as its key and the value of attribute
 # as value.
-def attribute_value_dictionary(s, attributes):
-    attribute_val = {}
-    total_label_num = len(s)
-    for j in range(len(attributes)):
-        key = attributes[j]
-        attribute_val[key] = set()
-        for i in range(total_label_num):
-            attribute_val[key].add(s[i][(list(s[i].keys())[j])])
-    return attribute_val
-
-
-attribute_val_dict = attribute_value_dictionary(train_data, total_attributes)
+# def attribute_value_dictionary(s, attributes):
+#     attribute_val = {}
+#     total_label_num = len(s)
+#     for j in range(len(attributes)):
+#         key = attributes[j]
+#         attribute_val[key] = set()
+#         for i in range(total_label_num):
+#             attribute_val[key].add(s[i][(list(s[i].keys())[j])])
+#     return attribute_val
+#
+#
+# attribute_val_dict = attribute_value_dictionary(train_data, total_attributes[0:len(total_attributes)-1])
 
 
 
@@ -290,18 +291,42 @@ def get_best_attribute(s, attributes, purity_type="entropy"):
 def get_s_v(node, attribute, value):
     attr_index = total_attributes.index(attribute)
     subset_v = []
-    for i in range(total_label_num):
+    subset_indices = []
+    for i in range(len(node.subset)):
+        val = node.subset[i][(list(node.subset[i].keys())[attr_index])]
         if node.subset[i][(list(node.subset[i].keys())[attr_index])] == value:
+
+            #row[value] = node.subset[i][(list(node.subset[i].keys())[-1])]
             row = {}
-            row[value] = node.subset[i][(list(node.subset[i].keys())[-1])]
+            for key in total_attributes:
+                row[key] = None
+            for j in range(len(total_attributes)):
+                row[total_attributes[j]] = node.subset[i][(list(node.subset[i].keys())[j])]
             subset_v.append(row)
+            subset_indices.append(i)
     return subset_v
 
 
+def train(s):
+    train_tree = Tree()
+    train_tree.set_root(ID3(train_data, total_attributes[0:len(total_attributes)-1], 1, None))
+    return train_tree
+
+
+# Prediction error for 2a
+def average_prediction_error(s, root):
+    wrong_count = 0
+    for i in range(len(s)):
+        if s[i][(list(s[i].keys())[-1])] == predict_result():
+
+
+
+
 if __name__ == '__main__':
-    print(ID3(train_data, total_attributes, 1, None)) #ID3(s, attributes, level, parent)
+    tree = train(train_data)
+    i = 0
 
-
+# purity type, max tree depth, data
 
 
 
