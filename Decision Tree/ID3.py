@@ -8,8 +8,9 @@ import Read
 import math
 
 # Variables
-train_data = Read.read_data("Test/train.csv")
-max_depth = input("Enter your maximum tree depth: ")
+train_data = Read.read_data("car/train.csv")
+test_data = Read.read_data("car/test.csv")
+max_depth = int(input("Enter your maximum tree depth: "))
 total_attributes = Read.key_list[0:len(Read.key_list)]
 total_label_num = len(train_data)
 attribute_val_dict = Read.attribute_val
@@ -248,11 +249,11 @@ def ID3(s, attributes, level, parent):
     # return a leaf node with the most common label
     if len(attributes) == 0 or level == max_depth:
         node = Node(s, parent, True)
-        node.set_label(total_most_common_label)#??????
+        node.set_label(most_common_label(s))#??????
         return node
 
     else:
-        # Create a root node for the tree
+        # Create a root node for the subtree
         node = Node(s, parent, False)
         best_attribute = get_best_attribute(s, attributes)
         node.set_attribute(best_attribute)
@@ -338,7 +339,9 @@ def predict_result(attributes, node):
 if __name__ == '__main__':
     tree = train(train_data)
     err = average_prediction_error(train_data, tree.root)
+    err_test = average_prediction_error(test_data, tree.root)
     print(err)
+    print(err_test)
     i = 0
 
 # purity type, max tree depth, data
