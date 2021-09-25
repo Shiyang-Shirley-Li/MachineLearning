@@ -8,9 +8,16 @@ import Read
 import math
 
 # Variables
-train_data = Read.read_data("car/train.csv")
-test_data = Read.read_data("car/test.csv")
+data_type = input("Enter the data you'd like to train and test (car or bank): ")
 max_depth = int(input("Enter your maximum tree depth: "))
+purity_type = input("Enter your purity type(entropy or ME or GI): ")
+if data_type == "car":
+    train_data = Read.read_data("car/train.csv")
+    test_data = Read.read_data("car/test.csv")
+elif data_type == "bank":
+    train_data = Read.read_data("bank/train.csv")
+    test_data = Read.read_data("bank/test.csv")
+
 total_attributes = Read.key_list[0:len(Read.key_list)]
 total_label_num = len(train_data)
 attribute_val_dict = Read.attribute_val
@@ -180,9 +187,6 @@ def most_common_label(s):
     return (most_common, largest_frac)
 
 
-total_most_common_label = most_common_label(train_data) #??????
-
-
 # Return a dictionary having attribute as its key and the value of attribute
 # as value.
 # def attribute_value_dictionary(s, attributes):
@@ -249,13 +253,13 @@ def ID3(s, attributes, level, parent):
     # return a leaf node with the most common label
     if len(attributes) == 0 or level == max_depth:
         node = Node(s, parent, True)
-        node.set_label(most_common_label(s))#??????
+        node.set_label(most_common_label(s))
         return node
 
     else:
         # Create a root node for the subtree
         node = Node(s, parent, False)
-        best_attribute = get_best_attribute(s, attributes)
+        best_attribute = get_best_attribute(s, attributes, purity_type)
         node.set_attribute(best_attribute)
 
         for value in attribute_val_dict[node.attribute]:
@@ -275,7 +279,7 @@ def ID3(s, attributes, level, parent):
 
 
 # Return the best attribute that best splits s by using purity
-def get_best_attribute(s, attributes, purity_type="entropy"):
+def get_best_attribute(s, attributes, purity_type):
     gains = []
     for attribute in attributes:
         if purity_type == "entropy":
