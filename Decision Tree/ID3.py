@@ -344,11 +344,10 @@ if __name__ == '__main__':
     tree = train(train_data)
     err = average_prediction_error(train_data, tree.root)
     err_test = average_prediction_error(test_data, tree.root)
+    print("Training Error: ")
     print(err)
+    print("Testing Error: ")
     print(err_test)
-    i = 0
-
-# purity type, max tree depth, data
 
 
 
