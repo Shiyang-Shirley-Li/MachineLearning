@@ -12,15 +12,26 @@ data_type = input("Enter the data you'd like to train and test (car or bank): ")
 max_depth = int(input("Enter your maximum tree depth: "))
 purity_type = input("Enter your purity type(entropy or ME or GI): ")
 if data_type == "car":
-    train_data = Read.read_data("car/train.csv")
-    test_data = Read.read_data("car/test.csv")
+    train_data = Read.read_data("car/train.csv", data_type)
+    test_data = Read.read_data("car/test.csv", data_type)
+    total_attributes = Read.key_list
+    attribute_val_dict = Read.attribute_val
 elif data_type == "bank":
-    train_data = Read.read_data("bank/train.csv")
-    test_data = Read.read_data("bank/test.csv")
+    train_data = Read.read_data("Test/median.csv", data_type)
+    original_attribute_val_dict = Read.attribute_val_bank
+    Read.change_numeric_to_binary(train_data, original_attribute_val_dict)
+    test_data = Read.read_data("bank/test.csv", data_type)
+    Read.change_numeric_to_binary(test_data, original_attribute_val_dict)
+    total_attributes = Read.key_list_bank
+    for i in range(len(total_attributes)):
+        del list(original_attribute_val_dict.values())[i][0]
+    attribute_val_dict = original_attribute_val_dict
+    train_majority = Read.get_majority_attribute_val(train_data, attribute_val_dict)
+    #unknown_train_data = Read.unknown_to_majority(train_data, attribute_val_dict, train_majority)
 
-total_attributes = Read.key_list[0:len(Read.key_list)]
+
 total_label_num = len(train_data)
-attribute_val_dict = Read.attribute_val
+
 
 # Information Gain
 
@@ -162,7 +173,6 @@ def gini_index_gain(s, attribute):
     return current_gini_index(s) - expected_gini_index(s, attribute)
 
 
-
 # return a tuple of most common label and its percentage of a set s
 def most_common_label(s):
     total_label_num = len(s)
@@ -203,7 +213,6 @@ def most_common_label(s):
 # attribute_val_dict = attribute_value_dictionary(train_data, total_attributes[0:len(total_attributes)-1])
 
 
-
 # Data Structures
 class Node:
     # Contains an attribute, different branches, subset, parent, label (if it is a
@@ -226,6 +235,7 @@ class Node:
     # if it is a leaf node, set a label for it
     def set_label(self, label):
         self.label = label
+
 
 class Tree:
     def __init__(self):
