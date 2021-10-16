@@ -17,7 +17,7 @@ if data_type == "car":
     total_attributes = Read.key_list
     attribute_val_dict = Read.attribute_val
 elif data_type == "bank":
-    train_data = Read.read_data("Test/median.csv", data_type)
+    train_data = Read.read_data("bank/train.csv", data_type)
     original_attribute_val_dict = Read.attribute_val_bank
     Read.change_numeric_to_binary(train_data, original_attribute_val_dict)
     test_data = Read.read_data("bank/test.csv", data_type)
