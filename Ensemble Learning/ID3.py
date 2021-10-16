@@ -8,26 +8,16 @@ import Read
 import math
 
 # Variables
-data_type = input("Enter the data you'd like to train and test (car or bank): ")
-max_depth = int(input("Enter your maximum tree depth: "))
-purity_type = input("Enter your purity type(entropy or ME or GI): ")
-if data_type == "car":
-    train_data = Read.read_data("car/train.csv", data_type)
-    test_data = Read.read_data("car/test.csv", data_type)
-    total_attributes = Read.key_list
-    attribute_val_dict = Read.attribute_val
-elif data_type == "bank":
-    train_data = Read.read_data("Test/median.csv", data_type)
-    original_attribute_val_dict = Read.attribute_val_bank
-    Read.change_numeric_to_binary(train_data, original_attribute_val_dict)
-    test_data = Read.read_data("bank/test.csv", data_type)
-    Read.change_numeric_to_binary(test_data, original_attribute_val_dict)
-    total_attributes = Read.key_list_bank
-    for i in range(len(total_attributes)):
+max_depth = 2
+train_data = Read.read_data("bank/train.csv")
+original_attribute_val_dict = Read.attribute_val_bank
+Read.change_numeric_to_binary(train_data, original_attribute_val_dict)
+test_data = Read.read_data("bank/test.csv")
+Read.change_numeric_to_binary(test_data, original_attribute_val_dict)
+total_attributes = Read.key_list_bank
+for i in range(len(total_attributes)):
         del list(original_attribute_val_dict.values())[i][0]
-    attribute_val_dict = original_attribute_val_dict
-    train_majority = Read.get_majority_attribute_val(train_data, attribute_val_dict)
-    #unknown_train_data = Read.unknown_to_majority(train_data, attribute_val_dict, train_majority)
+attribute_val_dict = original_attribute_val_dict
 
 
 total_label_num = len(train_data)
@@ -88,91 +78,6 @@ def info_gain(s, attribute):
     return current_entropy(s) - expected_entropy(s, attribute)
 
 
-# Majority Error = 1 - num of majority label/total num of label
-def current_majority_error(s):
-    return 1 - most_common_label(s)[1]
-
-# the majority error of an attribute in set s
-def expected_majority_error(s, attribute):
-    num = len(s)
-    examples = set()
-    for i in range(num):
-        examples.add(s[i].get(attribute))
-
-    examples_num = {}
-    for key in examples:
-        examples_num[key] = 0
-
-    for i in range(num):
-        examples_num[s[i].get(attribute)] += 1
-
-    majority_error = 0
-    for key in examples:
-        subset = []
-        for i in range(num):
-            if s[i].get(attribute) == key:
-                subset.append(s[i])
-        majority_error += examples_num[key] / num * current_majority_error(subset)
-
-    return majority_error
-
-
-# the gain of an attribute by using ME
-def majority_error_gain(s, attribute):
-    return current_majority_error(s) - expected_majority_error(s, attribute)
-
-
-# Gini Index
-def current_gini_index(s):
-    total_label_num = len(s)
-    label_name = []
-    for i in range(total_label_num):
-        label_name.append(s[i][(list(s[i].keys())[-1])])
-    labels = set(label_name)
-    labels_num = {}
-    for key in labels:
-        labels_num[key] = 0
-
-    for i in range(total_label_num):
-        labels_num[s[i][(list(s[i].keys())[-1])]] += 1
-
-    square_value = 0
-    for key in labels:
-        fraction = labels_num[key] / total_label_num
-        square_value += pow(fraction, 2)
-    return 1 - square_value
-
-
-# the entropy of an attribute in set s
-def expected_gini_index(s, attribute):
-    num = len(s)
-    examples = set()
-    for i in range(num):
-        examples.add(s[i].get(attribute))
-
-    examples_num = {}
-    for key in examples:
-        examples_num[key] = 0
-
-    for i in range(num):
-        examples_num[s[i].get(attribute)] += 1
-
-    exp_gini_index = 0
-    for key in examples:
-        subset = []
-        for i in range(num):
-            if s[i].get(attribute) == key:
-                subset.append(s[i])
-        exp_gini_index += examples_num[key]/num * current_gini_index(subset)
-
-    return exp_gini_index
-
-
-# the information gain of an attribute
-def gini_index_gain(s, attribute):
-    return current_gini_index(s) - expected_gini_index(s, attribute)
-
-
 # return a tuple of most common label and its percentage of a set s
 def most_common_label(s):
     total_label_num = len(s)
@@ -195,22 +100,6 @@ def most_common_label(s):
             most_common = key
             largest_frac = fraction
     return (most_common, largest_frac)
-
-
-# Return a dictionary having attribute as its key and the value of attribute
-# as value.
-# def attribute_value_dictionary(s, attributes):
-#     attribute_val = {}
-#     total_label_num = len(s)
-#     for j in range(len(attributes)):
-#         key = attributes[j]
-#         attribute_val[key] = set()
-#         for i in range(total_label_num):
-#             attribute_val[key].add(s[i][(list(s[i].keys())[j])])
-#     return attribute_val
-#
-#
-# attribute_val_dict = attribute_value_dictionary(train_data, total_attributes[0:len(total_attributes)-1])
 
 
 # Data Structures
@@ -269,7 +158,7 @@ def ID3(s, attributes, level, parent):
     else:
         # Create a root node for the subtree
         node = Node(s, parent, False)
-        best_attribute = get_best_attribute(s, attributes, purity_type)
+        best_attribute = get_best_attribute(s, attributes)
         node.set_attribute(best_attribute)
 
         for value in attribute_val_dict[node.attribute]:
@@ -289,15 +178,10 @@ def ID3(s, attributes, level, parent):
 
 
 # Return the best attribute that best splits s by using purity
-def get_best_attribute(s, attributes, purity_type):
+def get_best_attribute(s, attributes):
     gains = []
     for attribute in attributes:
-        if purity_type == "entropy":
-            gains.append(info_gain(s, attribute))
-        elif purity_type == "ME":
-            gains.append(majority_error_gain(s, attribute))
-        elif purity_type == "GI":
-            gains.append(gini_index_gain(s, attribute))
+        gains.append(info_gain(s, attribute))
     max_index = gains.index(max(gains))
     return attributes[max_index]
 

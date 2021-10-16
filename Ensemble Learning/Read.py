@@ -5,17 +5,6 @@ Read data from a csv file path as a dictionary
 """
 import statistics
 
-#List of columns as keys in car
-key_list = ["buying", "maint", "doors", "persons", "lug_boot", "safety", "label"]
-attribute_val = {}
-attribute_val["buying"] = ["vhigh", "high", "med", "low"]
-attribute_val["maint"] = ["vhigh", "high", "med", "low"]
-attribute_val["doors"] = ["2", "3", "4", "5more"]
-attribute_val["persons"] = ["2", "4", "more"]
-attribute_val["lug_boot"] = ["small", "med", "big"]
-attribute_val["safety"] = ["low", "med", "high"]
-attribute_val["label"] = ["unacc", "acc", "good", "vgood"]
-
 #List of columns as keys in bank
 key_list_bank = ["age", "job", "marital", "education", "default", "balance", "housing", "loan", "contact", "day",
                  "month", "duration", "campaign", "pdays", "previous", "poutcome", "label"]
@@ -39,16 +28,7 @@ attribute_val_bank["previous"] = ["numeric", "less", "bigger"]
 attribute_val_bank["poutcome"] = ["nn", "unknown", "other", "failure", "success"]
 attribute_val_bank["label"] = ["nn", "yes", "no"]
 
-# Q2 data for test
-# key_list = ["O", "T", "H", "W", "Play?"]
-# attribute_val = {}
-# attribute_val["O"] = ["S", "O", "R"]
-# attribute_val["T"] = ["H", "M", "C"]
-# attribute_val["H"] = ["H", "N", "L"]
-# attribute_val["W"] = ["S", "W"]
-# attribute_val["Play?"] = ["n", "p"]
-
-def read_data(path, data_type):
+def read_data(path):
     # initialize data
     data = []
     # Add values to the data dictionary
@@ -56,18 +36,13 @@ def read_data(path, data_type):
         for line in f:
             terms = line.strip().split(',')
             row = {}
-            if data_type == "car":
-                for key in key_list:
-                    row[key] = None
-                for i in range(len(key_list)):
-                    row[key_list[i]] = terms[i]
-                data.append(row)
-            elif data_type == "bank":
-                for key in key_list_bank:
-                    row[key] = None
-                for i in range(len(key_list_bank)):
-                    row[key_list_bank[i]] = terms[i]
-                data.append(row)
+
+            for key in key_list_bank:
+                row[key] = None
+            for i in range(len(key_list_bank)):
+                row[key_list_bank[i]] = terms[i]
+            data.append(row)
+
     return data
 
 
@@ -95,39 +70,5 @@ def update_numeric_to_binary(d, i, med):
         else:
             d[j][(list(d[j].keys())[i])] = "less"
     return d
-
-
-# attribute value missing
-def unknown_to_majority(d, attributes, train_majority):
-    for i in range(len(d)):  # each row
-        for j in range(len(attributes)):  # each column
-            if d[i][(list(d[i].keys())[j])] == "unknown":
-                d[i][(list(d[i].keys())[j])] = train_majority[attributes[j]]
-    return d
-
-
-def get_majority_attribute_val(d, attributes):
-    attribute_type_count = {}
-    i = 0
-    for attribute in list(attributes.keys()):
-        attribute_type_count[attribute] = []
-        for attribute_type in list(attributes.get(attribute)):
-            attribute_type_count[attribute].append({attribute_type: 0})
-        i+=1
-
-    for j in range(len(d)): # each row
-        for k in range(len(attributes)): # each column
-            key = [d[j][(list(d[j].keys())[k])]][0]
-            for l in range(len(attribute_type_count[(list(attributes.keys())[k])])): # length of attribute values
-                if key == list(attribute_type_count[(list(attributes.keys())[k])][l].keys())[0]:
-                    attribute_type_count[(list(attributes.keys())[k])][l][d[j][(list(d[j].keys())[k])]] += 1
-
-    # attribute_majority = {}
-    # for index in range(len(attributes)):
-    #     max = 0
-    #     for val_l in range(len(attribute_type_count[(list(attributes.keys())[index])])):  # length of attribute values
-    #         if attribute_type_count[(list(attributes.keys())[k])][l][d[j][(list(d[j].keys())[index])]]
-    #     attribute_majority[attributes[index]] =
-    return attribute_type_count
 
 
