@@ -3,3 +3,7 @@
 ### Decision Tree
 Test is an extra data file for debugging</br>
 To run: python3 ID3.py</br>
+### Ensemble Learning
+To run: python3 EnsembleLearning.py
+### Linear Regression
+To run: python3 LinearRegression.py
