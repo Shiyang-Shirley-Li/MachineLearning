@@ -1,13 +1,14 @@
 """
 @author: Shirley (Shiyang) Li
-Linear Regression by using batch gradient descent algorithm and stochastic gradient descent algorithm
+Linear Regression by using batch gradient descent algorithm, stochastic gradient descent algorithm
+and analytical form
 """
 import numpy as np
 from numpy import linalg as lin
 import Read
 
 algorithm_type = input("Enter the algorithm you'd like to use(bgd for batch gradient descent or sgd for stochastic "
-                       "gradient descent):")
+                       "gradient descent or optimal for analytical form):")
 
 
 # batch gradient descent algorithm
@@ -90,6 +91,12 @@ def stochastic_gradient_descent():
         learning_rate *= 0.5
 
 
+# Analytical form for calculating the optimal weight vector
+def analytical_form_weight(data, y):
+    data = np.transpose(data)
+    return lin.pinv(data * np.transpose(data)) * data * y
+
+
 if __name__ == '__main__':
     train_data = Read.read_data("concrete/train.csv", 53)[0]
     train_data = np.asmatrix(train_data)
@@ -115,3 +122,5 @@ if __name__ == '__main__':
         print("Weight: ", stochastic_result[0])
         print("Learning Rate: ", stochastic_result[1])
         print("Test Data Cost Function Value", compute_cost(test_data, y_test, stochastic_result[0]))
+    elif algorithm_type == "optimal":
+        print("Optimal weight for train data: ", analytical_form_weight(train_data, y_train))
