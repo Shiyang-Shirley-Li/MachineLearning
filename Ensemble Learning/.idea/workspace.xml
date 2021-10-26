@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="acc2dfa5-b919-4ff5-8bee-1894a9aedf2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Adaboost.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Linear Regression/.idea/Linear Regression.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Linear Regression/Read.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Ensemble Learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ensemble Learning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Adaboost.py" beforeDir="false" afterPath="$PROJECT_DIR$/EnsembleLearning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +30,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Linear Regression" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
-    <configuration name="Adaboost" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="EL" type="PythonConfigurationType" factoryName="Python">
       <module name="Ensemble Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -49,7 +45,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Adaboost.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EnsembleLearning.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
