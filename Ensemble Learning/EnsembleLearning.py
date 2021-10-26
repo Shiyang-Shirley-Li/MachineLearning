@@ -51,7 +51,7 @@ def ada_boost():
 
 
 def ada_boost_train(y, t):
-    tree = ID3.train(train_data) #how to relate to t????????????? weights???
+    tree = ID3.train(train_data, weights[t]) #how to relate to t????????????? weights???
     trees.append(tree)
 
     predictions[t] = convert_to_num(dt_predict_result(train_data, tree)[0])
