@@ -124,9 +124,9 @@ if __name__ == '__main__':
     train_data = Read.read_data("bank-note/train.csv", 872)
     test_data = Read.read_data("bank-note/test.csv", 500)
 
-    #if sys.argv[1] == "standard":
-        #standard_perceptron()
-    #elif sys.argv[1] == "votes":
-        #voted_perceptron()
-    #elif sys.argv[1] == "average":
-    average_perceptron()
+    if sys.argv[1] == "standard":
+        standard_perceptron()
+    elif sys.argv[1] == "voted":
+        voted_perceptron()
+    elif sys.argv[1] == "average":
+        average_perceptron()

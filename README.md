@@ -7,3 +7,8 @@ To run: python3 ID3.py</br>
 To run: python3 EnsembleLearning.py
 ### Linear Regression
 To run: python3 LinearRegression.py
+### Perceptron
+To run: </br>
+python3 Perceptron.py standard</br>
+python3 Perceptron.py voted</br>
+python3 Perceptron.py average</br>
