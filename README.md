@@ -12,3 +12,6 @@ To run: </br>
 python3 Perceptron.py standard</br>
 python3 Perceptron.py voted</br>
 python3 Perceptron.py average</br>
+### SVM
+To run: </br>
+python3 </br>
