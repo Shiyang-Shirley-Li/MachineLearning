@@ -14,4 +14,6 @@ python3 Perceptron.py voted</br>
 python3 Perceptron.py average</br>
 ### SVM
 To run: </br>
-python3 </br>
+python3 SVM.py primal</br>
+python3 SVM.py dual</br>
+python3 SVM.py kernal</br>

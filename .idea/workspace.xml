@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b5eb6c-71b3-4ee4-b856-8e30ecae8cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SVM/Read.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/._bank-note" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._data-desc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/data-desc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/bank-note/train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SVM/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SVM/svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM/SVM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
