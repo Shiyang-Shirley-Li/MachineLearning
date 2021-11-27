@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b5eb6c-71b3-4ee4-b856-8e30ecae8cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SVM/svm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/Read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/._bank-note" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._data-desc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/__MACOSX/bank-note/._train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/data-desc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/bank-note/train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SVM/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SVM/svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM/SVM.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,27 +37,29 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Perceptron/Perceptron.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SVM" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\SVM" />
       <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Perceptron" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Perceptron" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="SVM" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\lishi\AppData\Local\Programs\Python\Python37\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Perceptron" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SVM" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Perceptron/Perceptron.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SVM/svm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
