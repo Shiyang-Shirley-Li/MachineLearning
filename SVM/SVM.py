@@ -7,6 +7,7 @@ import numpy as np
 import random
 import Read
 from scipy.optimize import minimize
+import sys
 
 C = 100 / 873
 learning_rate = 0.25
@@ -17,7 +18,7 @@ x_test, y_test = Read.read_data("bank-note/test.csv", 4)
 initial_weight = np.zeros((5, 1))
 
 
-# Primal
+# SVM Primal SGD
 def SVM_primal_sgd(weight, ws):
     new_weight = weight
     shuffle_list = list(range(0, 872))  # 872 is the number of training data
@@ -48,8 +49,8 @@ def run_primal_sgd():
     initial_LR = learning_rate
     for t in range(0, T):
         current_weight = SVM_primal_sgd(current_weight, weights)
-        learning_rate = initial_LR / (1 + t * initial_LR / 2)  # Question 2a
-        # learning_rate = initial_LR / (1 + t) # Question 2b
+        LR = initial_LR / (1 + t * initial_LR / 2)  # Question 2a
+        # LR = initial_LR / (1 + t) # Question 2b
 
     last_weight = (weights[len(weights) - 1])
     # train error
@@ -75,7 +76,7 @@ def run_primal_sgd():
     print("Test error: ", test_error, "\n")
 
 
-# Dual
+# SVM Dual
 data_x = np.concatenate(x)
 data_y = np.array(y)
 c_1 = np.where(np.prod(data_x, axis=1) > 0)
@@ -152,7 +153,7 @@ def run_dual():
     print("Test error: ", test_error, "\n")
 
 
-# Kernal
+# SVM Kernel
 kernel = lambda a, b: np.exp(-np.sum(np.square(a - b)) / learning_rate)
 
 
