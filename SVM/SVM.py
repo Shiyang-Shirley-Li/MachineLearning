@@ -12,8 +12,8 @@ C = 100 / 873
 learning_rate = 0.25
 weights = []
 T = 100
-x, y = Read.read_data("bank-note/train.csv", 5)
-x_test, y_test = Read.read_data("bank-note/test.csv", 5)
+x, y = Read.read_data("bank-note/train.csv", 4)
+x_test, y_test = Read.read_data("bank-note/test.csv", 4)
 initial_weight = np.zeros((5, 1))
 
 
