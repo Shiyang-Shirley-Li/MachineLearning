@@ -34,13 +34,13 @@ def SVM_primal_sgd(weight, ws):
     return new_weight
 
 
-def predict_result(weight, x, y):
+def predict_result(weight, a, b):
     predict = 0
-    if x.dot(weight) > 0:
+    if a.dot(weight) > 0:
         predict = 1
     else:
         predict = -1
-    return y - predict
+    return b - predict
 
 
 def run_primal_sgd():
@@ -141,6 +141,78 @@ def run_dual():
     error_num = 0
     for i in range(0, len(x_test)):
         result = predict_result(final_weight, x_test[i], y_test[i])
+        if result != 0:
+            error_num += 1
+
+    test_error = error_num / len(x_test)
+
+    print(C, "\n")
+    print("Weight and bias: ", final_weight.reshape(1, 5), "\n")
+    print("Train error: ", train_error, "\n")
+    print("Test error: ", test_error, "\n")
+
+
+# Kernal
+kernel = lambda a, b: np.exp(-np.sum(np.square(a - b)) / learning_rate)
+
+
+def gram(train, k):
+    N = len(train)
+    K = np.empty((N, N))
+    for i in range(N):
+        for j in range(N):
+            K[i, j] = k(train[i], train[j])
+    return K
+
+
+kernel_data_x = gram(data_x, kernel)
+
+
+def kernal_predict(w, a, b):
+    n = len(x)
+    new_x = np.empty((1, n))
+    for i in range(n):
+        new_x[0, i] = kernel(a, x[i])
+
+    predict = 0
+    if new_x.dot(w) > 0:
+        predict = 1
+    else:
+        predict = -1
+
+    return b - predict
+
+
+def run_kernal():
+    res = minimize(loss_func, original_weight, constraints=constraints, bounds=bound, method='SLSQP', options={},
+                   tol=1e-6)
+    weight_a = res.x
+
+    weight_a = weight_a.reshape(872, 1)
+    for i in range(0, 872):
+        temp = weight_a.item((i, 0))
+        if temp > C:
+            weight_a.itemset((i, 0), C)
+        elif temp < 0:
+            weight_a.itemset((i, 0), 0)
+        else:
+            weight_a.itemset((i, 0), temp)
+
+    final_weight = sum_axy(kernel_data_x, data_y, weight_a)
+    final_weight = final_weight.reshape(872, 1)
+    # train error
+    error_count = 0
+    for i in range(0, len(x)):
+        result = kernal_predict(final_weight,x[i], y[i])
+        if result != 0:
+            error_count += 1
+
+    train_error = error_count / len(x)
+
+    # test error
+    error_num = 0
+    for i in range(0, len(x_test)):
+        result = kernal_predict(final_weight, x_test[i], y_test[i])
         if result != 0:
             error_num += 1
 
