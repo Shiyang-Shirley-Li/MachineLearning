@@ -17,3 +17,7 @@ To run: </br>
 python3 SVM.py primal</br>
 python3 SVM.py dual</br>
 python3 SVM.py kernal</br>
+### Logistic Regression
+To run:</br>
+python3 MAP_estimation.py</br>
+python3 ML_estimation.py</br>
