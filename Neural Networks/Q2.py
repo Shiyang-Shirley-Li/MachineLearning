@@ -4,7 +4,7 @@ import copy
 
 # To justify the correctness of problem 2 from part 1
 
-
+#  Q2
 def linear(width, weights, prev_results):
     curr_results = np.zeros(width)
     for j in range(len(curr_results)):

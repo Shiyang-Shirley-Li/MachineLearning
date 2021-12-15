@@ -17,7 +17,7 @@ test_list, test_result_list = Read.read_data("bank-note/test.csv", 4)
 initial_weight = np.zeros((5, 1))
 output = []
 
-
+# MAP ML SGD
 def MAP_ML_sgd(weight, ws):
     # shuffle data
     next_weight = weight
