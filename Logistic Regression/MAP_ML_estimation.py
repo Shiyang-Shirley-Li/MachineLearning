@@ -5,6 +5,7 @@ import copy
 import numpy as np
 import random
 import Read
+import sys
 
 number_features = 4
 T = 100

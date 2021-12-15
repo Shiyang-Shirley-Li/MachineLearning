@@ -21,3 +21,6 @@ python3 SVM.py kernal</br>
 To run:</br>
 python3 MAP_ML_estimation.py MAP</br>
 python3 MAP_ML_estimation.py ML</br>
+### Neural Networks
+To run:</br>
+python3 Q2.py Q2</br>

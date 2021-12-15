@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b5eb6c-71b3-4ee4-b856-8e30ecae8cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Logistic Regression/MAP_ML_estimation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Neural Networks/Q2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/MAP_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/Read.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/ML_estimation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/__MACOSX/._data-desc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/__MACOSX/._data-desc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/__MACOSX/._test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/__MACOSX/._test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/__MACOSX/._train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/__MACOSX/._train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/data-desc" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/data-desc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/data-desc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/data-desc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logistic Regression/bank/train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/bank-note/train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/__MACOSX/._data-desc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/__MACOSX/._data-desc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/__MACOSX/._test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/__MACOSX/._test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/__MACOSX/._train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/__MACOSX/._train.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/data-desc" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/data-desc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/data-desc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/data-desc.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/test.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neural Networks/bank/train.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Networks/bank-note/train.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logistic Regression/MAP_ML_estimation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logistic Regression/MAP_ML_estimation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Logistic Regression/ML_estimation.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Logistic Regression" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
@@ -64,13 +49,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\lishi\AppData\Local\Programs\Python\Python37\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Logistic Regression" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Logistic Regression/ML_estimation.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Logistic Regression" />
+      <option name="PARAMETERS" value="MAP" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
