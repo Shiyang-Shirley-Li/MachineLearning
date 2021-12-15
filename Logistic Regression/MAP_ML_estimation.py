@@ -10,8 +10,6 @@ import sys
 number_features = 4
 T = 100
 learning_rate = 0.0001
-if sys.argv[1] == "MAP":
-    v = 100
 
 train_list, train_result_list = Read.read_data("bank-note/train.csv", 4)
 train_num = 872
@@ -29,9 +27,12 @@ def MAP_ML_sgd(weight, ws):
     for i in shuffle_list:
         r = learning_rate
         # update weight
-        weight_o = next_weight * (1 - learning_rate / v)
         temp = r * (train_list[i] * (train_result_list[i] - train_list[i].dot(next_weight))).reshape(5, 1)
-        next_weight = np.add(temp, weight_o)
+        if sys.argv[1] == "MAP":
+            weight_o = next_weight * (1 - learning_rate / v)
+            next_weight = np.add(temp, weight_o)
+        else:
+            next_weight = np.add(temp, weight)
 
     ws.append(weight)
     return next_weight
@@ -52,7 +53,7 @@ def run_MAP_ML_estimation():
     for t in range(0, T):
         current_weight = MAP_ML_sgd(current_weight, output)
         # update learning rate
-        learning_rate = original_LR / (1 + t * original_LR / 2)
+        r = original_LR / (1 + t * original_LR / 2)
 
     # run train data
     final_weight = (output[len(output) - 1])
@@ -75,11 +76,13 @@ def run_MAP_ML_estimation():
 
     error_test = error_counter / len(test_list)
 
-    print("The weight = ", final_weight.reshape(1, 5), "\n", "The test_prediction error = ", \
-      error_test, "\n", "The train_prediction error = ", error_train)
+    print("The train error = ", error_train)
+    print("The test error = ", error_test)
 
 
 if __name__ == '__main__':
+    if sys.argv[1] == "MAP":
+        v = 100
     run_MAP_ML_estimation()
 
 
