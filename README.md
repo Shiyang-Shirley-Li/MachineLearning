@@ -24,3 +24,5 @@ python3 MAP_ML_estimation.py ML</br>
 ### Neural Networks
 To run:</br>
 python3 Q2.py Q2</br>
+### Final Project
+See details in README.md of Final Project
