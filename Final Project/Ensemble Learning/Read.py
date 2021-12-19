@@ -1,114 +1,125 @@
+"""
+@author: Shirley (Shiyang) Li
+
+Read data from a csv file path as a dictionary
+"""
 import statistics
-import numpy as np
-
-data_attributes = [
-    ["numeric", "less", "bigger"],
-    ["workclass", "Private", "Self-emp-not-inc", "Self-emp-inc", "Federal-gov", "Local-gov", "State-gov", "Without-pay",
-     "Never-worked"],
-    ["numeric", "less", "bigger"],
-    ["education", "Bachelors", "Some-college", "11th", "HS-grad", "Prof-school", "Assoc-acdm", "Assoc-voc", "9th", "7th-8th",
-     "12th", "Masters", "1st-4th", "10th", "Doctorate", "5th-6th", "Preschool"],
-    ["numeric", "less", "bigger"],
-    ["marital-status", "Married-civ-spouse", "Divorced", "Never-married", "Separated", "Widowed", "Married-spouse-absent",
-     "Married-AF-spouse"],
-    ["occupation", "Tech-support", "Craft-repair", "Other-service", "Sales", "Exec-managerial", "Prof-specialty",
-     "Handlers-cleaners", "Machine-op-inspct", "Adm-clerical", "Farming-fishing", "Transport-moving", "Priv-house-serv",
-     "Protective-serv", "Armed-Forces"],
-    ["relationship", "Wife", "Own-child", "Husband", "Not-in-family", "Other-relative", "Unmarried"],
-    ["race", "White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"],
-    ["sex", "Female", "Male"],
-    ["numeric", "less", "bigger"],
-    ["numeric", "less", "bigger"],
-    ["numeric", "less", "bigger"],
-    ["native-country", "United-States", "Cambodia", "England", "Puerto-Rico", "Canada", "Germany", "Outlying-US(Guam-USVI-etc)",
-     "India", "Japan", "Greece", "South", "China", "Cuba", "Iran", "Honduras", "Philippines", "Italy", "Poland", "Jamaica",
-     "Vietnam", "Mexico", "Portugal", "Ireland", "France", "Dominican-Republic", "Laos", "Ecuador", "Taiwan", "Haiti",
-     "Columbia", "Hungary", "Guatemala", "Nicaragua", "Scotland", "Thailand", "Yugoslavia", "El-Salvador", "Trinadad&Tobago",
-     "Peru", "Hong", "Holand-Netherlands"]
-]
-
-labels = [-1, 1]
 
 
-def read_data(path, deal_with_missing, train):
-    s = []
-    with open(fp, 'r') as f:
-        num_columns = 0
+#List of columns as keys
+key_list= ["age", "workclass", "fnlwgt", "education", "education.num", "marital.status", "occupation",
+                 "relationship", "race", "sex", "capital.gain", "capital.loss", "hours.per.week", "native.country"]
+attribute_val = {}
+attribute_val["age"] = ["numeric", "less", "bigger"],
+attribute_val["workclass"] = ["nn", "Private", "Self-emp-not-inc", "Self-emp-inc", "Federal-gov", "Local-gov",
+                                   "State-gov", "Without-pay", "Never-worked"],
+attribute_val["fnlwgt"] = ["numeric", "less", "bigger"],
+attribute_val["education"] = ["nn", "Bachelors", "Some-college", "11th", "HS-grad", "Prof-school", "Assoc-acdm",
+                                 "Assoc-voc", "9th", "7th-8th", "12th", "Masters", "1st-4th", "10th", "Doctorate",
+                                 "5th-6th", "Preschool"],
+attribute_val["education.num"] = ["numeric", "less", "bigger"],
+attribute_val["marital-status"] = ["nn", "Married-civ-spouse", "Divorced", "Never-married", "Separated", "Widowed",
+                                        "Married-spouse-absent", "Married-AF-spouse"],
+attribute_val["occupation"] = ["nn", "Tech-support", "Craft-repair", "Other-service", "Sales", "Exec-managerial",
+                                    "Prof-specialty", "Handlers-cleaners", "Machine-op-inspct", "Adm-clerical",
+                                    "Farming-fishing", "Transport-moving", "Priv-house-serv", "Protective-serv",
+                                    "Armed-Forces"],
+attribute_val["relationship"] = ["nn", "Wife", "Own-child", "Husband", "Not-in-family", "Other-relative", "Unmarried"],
+attribute_val["race"] = ["nn", "White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"],
+attribute_val["sex"] = ["nn", "Female", "Male"],
+attribute_val["capital.gain"] = ["numeric", "less", "bigger"],
+attribute_val["capital.loss"] = ["numeric", "less", "bigger"],
+attribute_val["hours.per.week"] = ["numeric", "less", "bigger"],
+attribute_val["native-country"] = ["nn", "United-States", "Cambodia", "England", "Puerto-Rico", "Canada", "Germany", 
+                                        "Outlying-US(Guam-USVI-etc)", "India", "Japan", "Greece", "South", "China", "Cuba", 
+                                        "Iran", "Honduras", "Philippines", "Italy", "Poland", "Jamaica", "Vietnam", "Mexico", 
+                                        "Portugal", "Ireland", "France", "Dominican-Republic", "Laos", "Ecuador", "Taiwan", 
+                                        "Haiti", "Columbia", "Hungary", "Guatemala", "Nicaragua", "Scotland", "Thailand", 
+                                        "Yugoslavia", "El-Salvador", "Trinadad&Tobago", "Peru", "Hong", "Holand-Netherlands"]
+attribute_val["label"] = ["nn", "1", "0"]
+
+
+def read_data(path, train = True):
+    # initialize data
+    data = []
+    # Add values to the data dictionary
+    with open(path, 'r') as f:
         for line in f:
             terms = line.strip().split(',')
-            num_columns = len(terms)
-
-        s = [[] for _ in range(num_columns)]
-
-        for line in f:
-            terms = line.strip().split(',')
-            for i in range(num_columns):
-                s[i].append(terms[i])
-
-    attributes = data_attributes
-    temp = change_numeric_to_binary(s, attributes)
-    if deal_with_missing:
-        s = change_missing_to_majority(temp, attributes, train) #?????
-    return s
-
-
-def change_numeric_to_binary(s, attributes):
-    for i in range(len(attributes)):
-        if attributes[i][0] == "numeric":
-            s_i_ints = list(map(int, s[i]))
-            median = statistics.median(s_i_ints)
+            row = {}
             
-            attributes[i][0] = str(median)
-
-            for j in range(len(s[i])):
-                if int(s[i][j]) > int(attributes[i][0]):
-                    s[i][j] = "bigger"
-                else:
-                    s[i][j] = "less"
-
-        #elif _is_numeric_attribute(attributes[i]):#?????
-            #s[i] = _update_numeric_attributes(s[i], attributes[i])
-    return s
-
-
-# def _is_numeric_attribute(attribute):
-#     """Check if a given attribute in the bank list is numeric."""
-#     try:
-#         int(attribute[0])
-#         return True
-#     except ValueError:
-#         return False
+            if train:
+                for key in key_list:
+                    row[key] = None
+                for i in range(len(key_list)):
+                    row[key_list[i]] = terms[i]
+                data.append(row)
+            else:
+                for key in key_list[:len(key_list) - 1]:
+                    row[key] = None
+                for i in range(len(key_list)-1):
+                    row[key_list[i]] = terms[i]
+                data.append(row)
+    return data
 
 
-def change_missing_to_majority(s, attributes, train):
-    majority = []
+# Convert a numerical feature to a binary one for Q3
+def change_numeric_to_binary(original_data, attributes):
     for i in range(len(attributes)):
-        if train:
-            majority.append("")
-            if "?" in attributes[i]:
-                majority_attribute = majority_attribute_value(s[i], attributes[i])
-                majority[i] = majority_attribute
-
-                for j in range(len(s[i])):
-                    if s[i][j] == "?":
-                        s[i][j] = majority_attribute
-
-        elif "?" in attributes[i]:
-            for j in range(len(s[i])):
-                if s[i][j] == "?":
-                    s[i][j] = majority[i]
-    return s
+        if list(attributes.values())[i][0] == "numeric":
+            median = calculate_median(original_data, i)
+            original_data = update_numeric_to_binary(original_data, i, median)
+    return original_data
 
 
-def majority_attribute_value(subset, attribute):
-    count = [0 for _ in range(len(attribute))]
+def calculate_median(d, i):
+    all_values_i = []
+    for j in range(len(d)):
+        all_values_i.append(int(d[j][(list(d[j].keys())[i])]))
+    median = statistics.median(all_values_i)
+    return median
 
-    for value in subset:
-        for i in range(len(attribute)):
-            if value == attribute[i] and attribute[i] != "?":
-                count[i] += 1
-                break
 
-    index = count.index(max(count))
-    return attribute[index]
+def update_numeric_to_binary(d, i, med):
+    for j in range(len(d)):
+        if int(d[j][(list(d[j].keys())[i])]) > med:
+            d[j][(list(d[j].keys())[i])] = "bigger"
+        else:
+            d[j][(list(d[j].keys())[i])] = "less"
+    return d
+
+
+# attribute value missing
+def unknown_to_majority(d, attributes, train_majority):
+    for i in range(len(d)):  # each row
+        for j in range(len(attributes)):  # each column
+            if d[i][(list(d[i].keys())[j])] == "?":
+                d[i][(list(d[i].keys())[j])] = train_majority[attributes[j]]
+    return d
+
+
+def get_majority_attribute_val(d, attributes):
+    attribute_type_count = {}
+    i = 0
+    for attribute in list(attributes.keys()):
+        attribute_type_count[attribute] = []
+        for attribute_type in list(attributes.get(attribute)):
+            attribute_type_count[attribute].append({attribute_type: 0})
+        i+=1
+
+    for j in range(len(d)): # each row
+        for k in range(len(attributes)): # each column
+            key = [d[j][(list(d[j].keys())[k])]][0]
+            for l in range(len(attribute_type_count[(list(attributes.keys())[k])])): # length of attribute values
+                if key == list(attribute_type_count[(list(attributes.keys())[k])][l].keys())[0]:
+                    attribute_type_count[(list(attributes.keys())[k])][l][d[j][(list(d[j].keys())[k])]] += 1
+
+    # attribute_majority = {}
+    # for index in range(len(attributes)):
+    #     max = 0
+    #     for val_l in range(len(attribute_type_count[(list(attributes.keys())[index])])):  # length of attribute values
+    #         if attribute_type_count[(list(attributes.keys())[k])][l][d[j][(list(d[j].keys())[index])]]
+    #     attribute_majority[attributes[index]] =
+    return attribute_type_count
+
 

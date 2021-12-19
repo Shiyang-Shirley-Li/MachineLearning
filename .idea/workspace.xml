@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b5eb6c-71b3-4ee4-b856-8e30ecae8cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Final Project/Decision Tree/ID3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Final Project/Decision Tree/Read.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/Read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/EnsembleLearning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/ID3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final Project/Data/test_final.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/Data/test_final.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final Project/Data/train_final.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/Data/train_final.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final Project/Ensemble Learning/Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/Read.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
