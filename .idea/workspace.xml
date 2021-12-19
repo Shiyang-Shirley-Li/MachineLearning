@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b5eb6c-71b3-4ee4-b856-8e30ecae8cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/EnsembleLearning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/ID3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final Project/SVM/Read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final Project/SVM/SVM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Final Project/SVM/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Final Project/Ensemble Learning/Read.py" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/Ensemble Learning/Read.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Final Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Final Project/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,16 +39,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Final Project/Ensemble Learning" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Final Project/SVM" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Final Project\SVM" />
       <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Final Project\Ensemble Learning" />
       <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Decision Tree\bank" />
       <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Final Project\Decision Tree" />
       <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Neural Networks" />
-      <recent name="C:\Users\lishi\OneDrive\Documents\GitHub\MachineLearning\Logistic Regression" />
     </key>
   </component>
   <component name="RunManager">
